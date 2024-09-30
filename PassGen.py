@@ -8,7 +8,7 @@ from cryptography.hazmat.primitives import hashes
 import base64
 import os
 import json
-
+import maskpass
 # Character sets
 LOWER = "abcdefghijklmnopqrstuvwxyz"
 UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -223,7 +223,8 @@ def load_master_password_hash(file_path='master_password.json'):
 
 # Login flow to validate master password
 def login():
-    master_password = input("Enter your master password: ")
+    #master_password = input("Enter your master password: ")
+    master_password = maskpass.askpass("Enter your master password: ", " ")
 
     if verify_master_password(master_password):
         print("Login successful.")
